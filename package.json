@@ -1,16 +1,16 @@
 {
-  "name": "app",
-  "version": "0.1.0",
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "RSS aggregator",
+  "main": "src/index.js",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^14.2.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-scripts": "^5.0.1",
-    "web-vitals": "^2.1.4"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FFire/frontend-project-lvl4.git"
   },
+  "author": "Alexandr Belan",
+  "license": "ISC",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -33,6 +33,16 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
+    ],
+    "proxy": "http://localhost:5001",
+    "dependencies": {
+      "@testing-library/jest-dom": "^5.16.4",
+      "@testing-library/react": "^13.3.0",
+      "@testing-library/user-event": "^14.2.0",
+      "react": "^18.1.0",
+      "react-dom": "^18.1.0",
+      "react-scripts": "^5.0.1",
+      "web-vitals": "^2.1.4"
+    }
   }
 }
