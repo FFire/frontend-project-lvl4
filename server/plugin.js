@@ -23,10 +23,12 @@ const setUpAuth = (app) => {
     });
 };
 
-export default async (app, options) => {
+ const  runApp = async (app, options) => {
   setUpAuth(app);
   await app.register(fastifySocketIo);
   addRoutes(app, options?.state || {});
 
   return app;
 };
+
+export default runApp;
