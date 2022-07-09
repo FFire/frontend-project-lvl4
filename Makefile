@@ -1,8 +1,14 @@
-start-backend:
-	cd ./server && npx fastify start plugin.js -l info -P -a localhost -p 5001
+install:
+	npm ci
 
 start-frontend:
 	npm start
 
-install:
-	npm ci
+start-backend:
+	npx start-server
+
+start:
+	make start-backend & make start-frontend
+
+deploy:
+	git push heroku main
