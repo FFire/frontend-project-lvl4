@@ -18,48 +18,49 @@ const validationSchema = Yup.object({
 });
 
 const onSubmit = (values) => {
-  console.log(values);
+  console.log("🚀 > onSubmit > values", values);
 };
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
+  console.log("🚀 > TextInput > props", props);
+  console.log("🚀 > TextInput > field", field);
 
   return (
     <>
       <label htmlFor={props.id || props.name}>{label}</label>
       <input className="text-input" {...field} {...props} />
       {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
+        <p className="error">{meta.error}</p>
       ) : null}
       <br />
     </>
   );
 };
 
-export const LoginForm = (props) => {
-  return (
-    <>
-      <p>Login page formik</p>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        <Form>
-          <TextInput
-            label="User Name"
-            name="username"
-            type="text"
-            placeholder="UserName"
-          />
-          <TextInput
-            label="Password"
-            name="password"
-            type="text"
-            placeholder="Password"
-          />
-        </Form>
-      </Formik>
-    </>
-  );
-};
+export const LoginForm = (props) => (
+  <>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <TextInput
+          label="User Name"
+          name="username"
+          type="text"
+          placeholder="UserName"
+        />
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          placeholder="Password"
+        />
+
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
+  </>
+);
