@@ -1,17 +1,7 @@
-import { Formik } from "formik";
+import { LoginForm } from "../components/LoginForm.jsx";
 
-const LoginPage = (props) => {
-  const onSubmit = () => {};
-
-  return (
-    <>
-      <p>Login page</p>
-      <Formik
-        initialValues={{ username: "", password: "" }}
-        onSubmit={onSubmit}
-      ></Formik>
-    </>
-  );
-};
-
-export default LoginPage;
+export const LoginPage = (props) => (
+  <>
+    <LoginForm />
+  </>
+);
