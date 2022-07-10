@@ -1,7 +1,9 @@
+import { Alert } from "react-bootstrap";
+
 const NotFoundPage = () => {
   return (
     <>
-      <p>404 - Not found page</p>
+      <Alert variant="primary">404 - Not found page</Alert>
     </>
   );
 };
