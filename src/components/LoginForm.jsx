@@ -49,7 +49,7 @@ const TextInput = ({ label, ...props }) => {
 export const LoginForm = () => (
   <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
     {({ isValid, dirty }) => (
-      <Form className="mb-3" noValidate>
+      <Form className="col-12 col-md-6 mt-3 mt-mb-0" noValidate>
         <h1 className="text-center mb-3">Login</h1>
 
         <TextInput required name="username" type="text" label="User Name" placeholder="User Name" />
