@@ -1,5 +1,8 @@
-import { Formik, Form, useField } from "formik";
+import { Formik, Form, useField, ErrorMessage } from "formik";
+import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
 import * as Yup from "yup";
+import cn from "classnames";
 
 const initialValues = {
   username: "",
@@ -10,57 +13,59 @@ const validationSchema = Yup.object({
   username: Yup.string()
     .max(15, "Must be 15 characters or less")
     .min(4, "Must be 4 characters or more")
-    .required("Required"),
+    .required("Name is required"),
   password: Yup.string()
     .max(15, "Must be 15 characters or less")
     .min(6, "Must be 6 characters or more")
-    .required("Required"),
+    .required("Passord is required"),
 });
 
-const onSubmit = (values) => {
+const onSubmit = (...values) => {
   console.log("🚀 > onSubmit > values", values);
 };
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
-  console.log("🚀 > TextInput > props", props);
-  console.log("🚀 > TextInput > field", field);
+  const { touched, error } = meta;
+  const inputClass = cn({
+    "form-control": true,
+    "is-invalid": touched && error,
+    "is-valid": touched && !error,
+  });
 
   return (
     <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <p className="error">{meta.error}</p>
-      ) : null}
-      <br />
+      <div className="form-floating mb-3">
+        <input className={inputClass} {...field} {...props} />
+        <label className="form-label" htmlFor={props.name}>
+          {label}
+        </label>
+        <ErrorMessage bg="danger" role="alert" component={Badge} name={props.name} />
+      </div>
     </>
   );
 };
 
-export const LoginForm = (props) => (
-  <>
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      <Form>
+export const LoginForm = () => (
+  <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+    {({ isValid, dirty }) => (
+      <Form className="mb-3" noValidate>
+        <h1 className="text-center mb-3">Login</h1>
+
+        <TextInput required name="username" type="text" label="User Name" placeholder="User Name" />
+
         <TextInput
-          label="User Name"
-          name="username"
-          type="text"
-          placeholder="UserName"
-        />
-        <TextInput
-          label="Password"
+          required
           name="password"
           type="password"
+          label="Password"
           placeholder="Password"
         />
 
-        <button type="submit">Submit</button>
+        <Button className="w-100 btn btn-primary" type="submit" disabled={!(isValid && dirty)}>
+          Login
+        </Button>
       </Form>
-    </Formik>
-  </>
+    )}
+  </Formik>
 );
