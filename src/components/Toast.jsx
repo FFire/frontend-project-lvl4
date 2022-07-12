@@ -1,17 +1,15 @@
-import { ToastContainer } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
 
-export const Toast = (props) => {
-  return (
-    <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-    />
-  );
+export const Toast = () => {
+  <ToastContainer
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+  />;
 };
